@@ -6,9 +6,10 @@ import com.example.demo.model.dto.PostUpdateDto;
 import com.example.demo.repository.PostEntity;
 import com.example.demo.repository.PostRepository;
 import com.example.demo.repository.UserEntity;
-import java.time.Clock;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+
+import java.time.Clock;
 
 @Service
 @RequiredArgsConstructor
@@ -22,7 +23,7 @@ public class PostService {
     }
 
     public PostEntity createPost(PostCreateDto postCreateDto) {
-        UserEntity userEntity = userService.getByIdOrElseThrow(postCreateDto.getWriterId());
+        UserEntity userEntity = userService.getById(postCreateDto.getWriterId());
         PostEntity postEntity = new PostEntity();
         postEntity.setWriter(userEntity);
         postEntity.setContent(postCreateDto.getContent());

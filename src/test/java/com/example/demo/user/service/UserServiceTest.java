@@ -4,7 +4,6 @@ import com.example.demo.common.domain.exception.CertificationCodeNotMatchedExcep
 import com.example.demo.common.domain.exception.ResourceNotFoundException;
 import com.example.demo.user.domain.UserStatus;
 import com.example.demo.user.domain.UserCreate;
-import com.example.demo.user.service.UserService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -85,9 +84,9 @@ class UserServiceTest {
 
     @Test
     void PENDING_상태의_사용자는_인증_코드로_ACTIVE_시킬_수_있다() {
-        service.verifyEmail(3, "aaaaaa-aaaa-aaaa-aaaaa-aaaaaaaaaaab");
+        service.verifyEmail(2, "aaaaaa-aaaa-aaaa-aaaaa-aaaaaaaaaaaa");
 
-        final var actual = service.getById(3);
+        final var actual = service.getById(2);
 
         assertThat(actual.getStatus()).isEqualTo(UserStatus.ACTIVE);
     }

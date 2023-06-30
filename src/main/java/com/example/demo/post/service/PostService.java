@@ -5,6 +5,7 @@ import com.example.demo.post.domain.PostCreate;
 import com.example.demo.post.domain.PostUpdate;
 import com.example.demo.post.infrastructure.PostEntity;
 import com.example.demo.post.service.port.PostRepository;
+import com.example.demo.user.domain.User;
 import com.example.demo.user.infrastructure.UserEntity;
 import com.example.demo.user.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -24,9 +25,9 @@ public class PostService {
     }
 
     public PostEntity createPost(PostCreate postCreate) {
-        UserEntity userEntity = userService.getById(postCreate.getWriterId());
+        User user = userService.getById(postCreate.getWriterId());
         PostEntity postEntity = new PostEntity();
-        postEntity.setWriter(userEntity);
+        postEntity.setWriter(UserEntity.fromDomain(user));
         postEntity.setContent(postCreate.getContent());
         postEntity.setCreatedAt(Clock.systemUTC().millis());
         return postRepository.save(postEntity);

@@ -1,5 +1,6 @@
-package com.example.demo.user.domain;
+package com.example.demo.user.controller.response;
 
+import com.example.demo.user.domain.User;
 import com.example.demo.user.domain.UserStatus;
 import lombok.Getter;
 import lombok.Setter;
@@ -14,4 +15,10 @@ public class MyProfileResponse {
     private String address;
     private UserStatus status;
     private Long lastLoginAt;
+
+    public static MyProfileResponse from(User user) {
+        // TODO
+
+        return null;
+    }
 }
